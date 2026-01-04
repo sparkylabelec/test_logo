@@ -8,6 +8,9 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@100..900&display=swap" rel="stylesheet"/>
     <script>
+      // 브라우저에서 process.env 참조 시 에러 방지
+      window.process = { env: { API_KEY: "" } };
+      
       tailwind.config = {
         darkMode: "class",
         theme: {
@@ -54,5 +57,7 @@
 </head>
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 transition-colors duration-200">
     <div id="root"></div>
+    <!-- 앱 실행을 위한 메인 스크립트 로드 -->
+    <script type="module" src="index.tsx"></script>
 </body>
 </html>

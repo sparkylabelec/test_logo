@@ -3,8 +3,13 @@ import { GoogleGenAI } from "@google/genai";
 import { MatchReport } from "../types";
 
 export const generateMatchSummary = async (report: MatchReport): Promise<string> => {
-  // Use named parameter and direct process.env.API_KEY as per guidelines
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  // 함수 호출 시점에 인스턴스를 생성하여 process.env.API_KEY가 주입된 후 사용되도록 보장
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    return "API 키가 설정되지 않았습니다.";
+  }
+  
+  const ai = new GoogleGenAI({ apiKey });
   
   const prompt = `
     Generate a professional soccer match summary based on the following details:
@@ -30,7 +35,6 @@ export const generateMatchSummary = async (report: MatchReport): Promise<string>
       }
     });
     
-    // Access response.text directly as a property
     return response.text || "Failed to generate summary.";
   } catch (error) {
     console.error("Gemini Error:", error);
