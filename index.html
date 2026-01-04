@@ -5,9 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>매치매니저 - 축구 경기 결과 관리</title>
     <script>
-      // 브라우저 환경에서 process.env 참조 에러 방지
       window.process = window.process || { env: { API_KEY: "" } };
-      
       window.onerror = function(msg, url, line, col, error) {
         console.error("MatchManager Runtime Error: " + msg + "\nLocation: " + url + ":" + line);
         return false;
@@ -23,18 +21,10 @@
             colors: {
               primary: "#0066FF",
               "primary-dark": "#0052CC",
-              background: {
-                light: "#F8F9FA",
-                dark: "#0F1117"
-              },
-              card: {
-                light: "#FFFFFF",
-                dark: "#1A1D26"
-              }
+              background: { light: "#F8F9FA", dark: "#0F1117" },
+              card: { light: "#FFFFFF", dark: "#1A1D26" }
             },
-            fontFamily: {
-              sans: ["Pretendard", "sans-serif"],
-            },
+            fontFamily: { sans: ["Pretendard", "sans-serif"] },
           },
         },
       };
@@ -44,8 +34,7 @@
         #root:empty::before {
           content: "Loading MatchManager...";
           position: absolute;
-          top: 50%;
-          left: 50%;
+          top: 50%; left: 50%;
           transform: translate(-50%, -50%);
           color: #475569;
           font-weight: 600;
