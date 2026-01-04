@@ -1,11 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { LayoutDashboard, FilePlus, List, LogOut, LogIn } from 'lucide-react';
+import { LayoutDashboard, FilePlus, List, LogOut, LogIn, Trophy } from 'lucide-react';
 import { useAuth } from '../App';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAdmin, logout } = useAuth();
+  const [logoError, setLogoError] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-[#0F1117] text-slate-100 font-sans">
@@ -13,15 +14,16 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       <aside className="w-full md:w-64 bg-[#1A1D26] border-r border-slate-800/50 p-6 flex flex-col gap-8 sticky top-0 h-screen overflow-y-auto z-40">
         <Link to="/" className="flex items-center gap-3 px-2 hover:opacity-80 transition-opacity group">
           <div className="relative flex-shrink-0 w-12 h-12 flex items-center justify-center border-2 border-dashed border-primary/40 rounded-xl bg-primary/10 overflow-hidden transition-colors group-hover:border-primary">
-            {/* Actual Logo Image File */}
-            <img 
-              src="logo.png" 
-              alt="MatchManager Logo" 
-              className="w-full h-full object-contain p-1.5"
-              onError={(e) => {
-                console.error("Logo failed to load from 'logo.png'");
-              }}
-            />
+            {!logoError ? (
+              <img 
+                src="/logo.png" 
+                alt="Logo" 
+                className="w-full h-full object-contain p-1.5"
+                onError={() => setLogoError(true)}
+              />
+            ) : (
+              <Trophy className="text-primary w-6 h-6" />
+            )}
           </div>
           <h1 className="text-xl font-black tracking-tight text-white">MatchManager</h1>
         </Link>

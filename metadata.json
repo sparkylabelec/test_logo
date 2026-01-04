@@ -1,5 +1,5 @@
 {
-  "name": "스티치디자인사용",
-  "description": "축구 경기 결과 및 리포트 관리 시스템 (Admin-centric Dashboard)",
+  "name": "MatchManager",
+  "description": "Football match result and report management system",
   "requestFramePermissions": []
 }
